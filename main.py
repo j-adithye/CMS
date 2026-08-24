@@ -1,24 +1,12 @@
 from validation import validate_username,validate_pwd
 from menu import menu
 
-users = {'arun':'Arun@123', 'roshin':'Roshin@123', 'albin': 'AlibinP@123'}
+users = {'a':{'password':'a','role':'admin'},'arun':{'password':'Arun@123','role':'admin'}, 'roshin':{'password':'Roshin@123','role':'admin'}, 'albin': {'password':'albin@123','role':'admin'}}
 
 def main():
     print('\t\t Welcome to CMS')
     print('\t\t  Plese Login')
     print('\t\t*****************')
-
-    while True:
-        try:
-            user = input('Enter User Name: ').lower()
-            if user == '':
-                raise ValueError('Username cannot be empty\n')
-            elif users.get(user) == None:
-                raise ValueError('User does not Exist\n')
-            else:
-                 break
-        except ValueError as e:
-            print(e)
 
     for i in range(4):
             if i == 3:
@@ -28,15 +16,39 @@ def main():
                 break
 
             try:
-                pwd = input('Enter Password: ')
-                if pwd == '':
-                    raise ValueError('Password cannot be empty\n')
-                elif pwd == users[user]:
-                        menu(user)
+                while True:
+                    try:
+                        user = input('Enter User Name: ').lower() #username input
+                        if user == '':
+                            raise ValueError('Username cannot be empty\n') #empty username validation
+                        if validate_username(user):
+                             break
+                    except ValueError as e:
+                         print(e)
+                while True:
+                    try:
+                        pwd = input('Enter Password: ')
+                        if pwd == '':
+                            raise ValueError('Password cannot be empty\n')
+                        else:
+                             break
+                    except ValueError as e:
+                         print(e)
+                if users.get(user) != None:
+                     if users.get(user).get('password') == pwd:
+                        if users.get(user).get('role') == 'admin':
+                            menu(user)
+                        else:
+                            print(f'Login attempt {i+1} failed\n')
+                            raise Exception('User is not an Admin')
+                     else:
+                        print(f'Login attempt {i+1} failed\n')
+                        raise ValueError('Username or Password Incorrect\n')
+                        
                 else:
                     print(f'Login attempt {i+1} failed\n')
-                    raise ValueError('Incorrect Password\n')
-            except ValueError as e:
+                    raise ValueError('Username or Password Incorrect\n')
+            except Exception as e:
                 print(e)
             
 

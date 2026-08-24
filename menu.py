@@ -4,13 +4,13 @@ from log_manager import view_logs
 
 
 def menu(user):
-    print('\t\t Clinic Management System')
-    print('\t\t*****************')
-    print('\t\t Welcome ',user)
+    print('\n\t\t Clinic Management System')
+    print('\t\t************************')
+    print('\t\t   Welcome ',user)
     print('''What would you like to do?
-            \n1. Manage Patients
-            \n2. View logs
-            \n3. Logout and Exit''')
+            1. Manage Patients
+            2. View logs
+            3. Logout and Exit''')
     while True:
         try:
             ch = input('Enter your choice: ')
@@ -23,6 +23,8 @@ def menu(user):
                     case 2:
                         view_logs()
                     case 3:
+                        print('logging out...')
+                        print('Exiting...')
                         exit()
                     case _:
                         print('Enter a valid number')

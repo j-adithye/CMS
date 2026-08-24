@@ -1,4 +1,4 @@
 
 
-def view_logs()
+def view_logs():
     pass

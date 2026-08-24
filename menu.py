@@ -1,4 +1,4 @@
-from patient_manager import manage_patients
+from patient_manager import manage_patients_menu
 from log_manager import view_logs
 
 
@@ -13,13 +13,13 @@ def menu(user):
             3. Logout and Exit''')
     while True:
         try:
-            ch = input('Enter your choice: ')
+            ch = input('Enter your choice: ').strip()
             if not ch.isdigit():
                 raise ValueError('Please enter a number')
             else:
                 match int(ch):
                     case 1:
-                        manage_patients()
+                        manage_patients_menu()
                     case 2:
                         view_logs()
                     case 3:

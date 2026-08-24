@@ -18,7 +18,7 @@ def main():
             try:
                 while True:
                     try:
-                        user = input('Enter User Name: ').lower() #username input
+                        user = input('Enter User Name: ').lower().strip() #username input
                         if user == '':
                             raise ValueError('Username cannot be empty\n') #empty username validation
                         if validate_username(user):
@@ -27,7 +27,7 @@ def main():
                          print(e)
                 while True:
                     try:
-                        pwd = input('Enter Password: ')
+                        pwd = input('Enter Password: ').strip()
                         if pwd == '':
                             raise ValueError('Password cannot be empty\n')
                         else:

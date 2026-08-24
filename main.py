@@ -1,39 +1,41 @@
 from validation import validate_username,validate_pwd
+from menu import menu
 
 users = {'arun':'Arun@123', 'roshin':'Roshin@123', 'albin': 'AlibinP@123'}
 
 def main():
     print('\t\t Welcome to CMS')
-    print('\t\t Plese Login')
-    print('\t\t*******************')
+    print('\t\t  Plese Login')
+    print('\t\t*****************')
 
     while True:
         try:
             user = input('Enter User Name: ').lower()
             if user == '':
-                raise ValueError('Username cannot be empty')
-            elif validate_username(user):
-                if user in users.keys():
-                    break
-                else:
-                    raise ValueError('User does not Exist')
+                raise ValueError('Username cannot be empty\n')
+            elif users.get(user) == None:
+                raise ValueError('User does not Exist\n')
             else:
-                raise ValueError('Username should only contain letters and numbers')
+                 break
         except ValueError as e:
             print(e)
 
-    while True:
+    for i in range(4):
+            if i == 3:
+                print('3 Invalid login attempts \nPlease try after Sometime\n')
+                #add to log file here
+
+                break
+
             try:
                 pwd = input('Enter Password: ')
                 if pwd == '':
-                    raise ValueError('Password cannot be empty')
-                elif validate_pwd(user):
-                    if pwd == users[user]:
-                        break
-                    else:
-                        raise ValueError('Incorrect Password')
+                    raise ValueError('Password cannot be empty\n')
+                elif pwd == users[user]:
+                        menu(user)
                 else:
-                    raise ValueError('Invalid Password')
+                    print(f'Login attempt {i+1} failed\n')
+                    raise ValueError('Incorrect Password\n')
             except ValueError as e:
                 print(e)
             

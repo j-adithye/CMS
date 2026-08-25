@@ -1,6 +1,9 @@
 from validation import validate_name,validate_bloodgrp,validate_phone,validate_dob
+from search_patient import search_menu
+from datetime import datetime
+from data import patients_data
 
-patients_data = {1001:{'name':'Sumesh Kumar', 'age': 25, 'blood group': 'O+', 'phone': 9656244560, 'address': 'Trivandrum'}}
+
 
 
 def add_patient():
@@ -18,6 +21,22 @@ def add_patient():
         except ValueError as e:
             print(e)
 
+    while True:
+        try:
+            phone = input('Enter phone number: ').strip()
+            if phone == '':
+                raise('Phone number cannot be empty. Try again...')
+            elif validate_phone(phone):
+                break
+            else:
+                raise ValueError('Invalid phone number')
+        except ValueError as e:
+            print(e)
+
+    for k,v in patients_data:
+        if v['phone'] == phone and v['name'] == name:
+            print('Patient alredy exists with Registration number:',k)
+            return
 
     while True:
         try:
@@ -46,18 +65,6 @@ def add_patient():
 
     while True:
         try:
-            phone = input('Enter phone number: ').strip()
-            if phone == '':
-                raise('Phone number cannot be empty. Try again...')
-            elif validate_phone(phone):
-                break
-            else:
-                raise ValueError('Invalid phone number')
-        except ValueError as e:
-            print(e)
-
-    while True:
-        try:
             address = input('Enter Address: ').strip()
             if address == '':
                 raise ValueError('Address cannot be empty.Try again...')
@@ -81,14 +88,16 @@ def add_patient():
         new_id = 1001
     else:
         new_id = next(reversed(patients_data)) + 1
-    patients_data[new_id] = {'name':name, 'dob': dob, 'blood group': bloodgrp,'gender':gender, 'phone': phone, 'address': address}
+    patients_data[new_id] = {'name':name, 'dob': dob, 'blood group': bloodgrp, 'gender':gender, 'phone': phone, 'address': address, 'created on': datetime.today().date().strftime("%d-%m-%Y"), 'is_active': True}
 
     print('Successfully Added with Registration ID: ',new_id)
-    
+
+
+
 def list_patients():
-    print('Patient ID\t Name\t\t DOB\t Blood Group\t Gender\t Phone Num\t Address')
+    print('Patient ID\t Name\t\t DOB\t Blood Group\t Gender\t Phone Num\t Address\t Created On\t Is Active')
     for k,v in patients_data.items():
-        print(f'{k}\t\t{v['name']}\t {v['dob']}\t {v['blood group']}\t\t {v['gender']}\t\t {v['phone']}\t {v['address']}')
+        print(f'{k}\t\t{v['name']}\t {v['dob']}\t {v['blood group']}\t {v['gender']}\t\t {v['phone']}\t {v['address']}\t {v['created on']}\t {v['is_active']}')
 
     print('END OF LIST...')
     return
@@ -96,8 +105,7 @@ def list_patients():
 
 
 
-def search_patient():
-    pass
+    
 
 
 
@@ -123,7 +131,7 @@ def manage_patients_menu():
                     case 2:
                         list_patients()
                     case 3:
-                        search_patient()    
+                        search_menu()    
                     case 4:
                         print('Returning to main menu....\n')
                         return

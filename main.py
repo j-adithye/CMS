@@ -1,7 +1,6 @@
 from validation import validate_username,validate_pwd
 from menu import menu
-
-users = {'a':{'password':'a','role':'admin'},'arun':{'password':'Arun@123','role':'admin'}, 'roshin':{'password':'Roshin@123','role':'admin'}, 'albin': {'password':'albin@123','role':'admin'}}
+from data import staff_data
 
 def main():
     print('\t\t Welcome to CMS')
@@ -34,13 +33,13 @@ def main():
                              break
                     except ValueError as e:
                          print(e)
-                if users.get(user) != None:
-                     if users.get(user).get('password') == pwd:
-                        if users.get(user).get('role') == 'admin':
+                if staff_data.get(user) != None:
+                     if staff_data.get(user).get('password') == pwd:
+                        if staff_data.get(user).get('role') == 'staff':
                             menu(user)
                         else:
                             print(f'Login attempt {i+1} failed\n')
-                            raise Exception('User is not an Admin')
+                            raise Exception('You are not a staff')
                      else:
                         print(f'Login attempt {i+1} failed\n')
                         raise ValueError('Username or Password Incorrect\n')

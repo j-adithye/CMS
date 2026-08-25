@@ -110,6 +110,8 @@ def search_reg():
                     if k == int(reg_no):
                         view_search(k,v)
                         return
+                print('Patient does not exist')
+                return
         except ValueError as e:
             print(e)
 
@@ -124,6 +126,8 @@ def search_phone():
                     if v['phone'] == phone:
                         view_search(k,v)
                         return
+                print('Phone num does not exist')
+                return
             else:
                 raise ValueError('Invalid phone number')
                 

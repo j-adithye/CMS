@@ -60,24 +60,35 @@ def add_patient():
         try:
             address = input('Enter Address: ').strip()
             if address == '':
-                raise ValueError('Address cannot be empty')
+                raise ValueError('Address cannot be empty.Try again...')
             else:
                 break
         except ValueError as e:
             print(e)
 
+    while True:
+        try:
+            gender = input('Enter Gender(M/F/O): ').strip().upper()
+            if gender == ''or gender not in ['F','M','O']:
+                raise ValueError('Invalid gender. Try again...')
+            else:
+                break
+        except ValueError as e:
+            print(e)
+
+
     if not patients_data:
         new_id = 1001
     else:
         new_id = next(reversed(patients_data)) + 1
-    patients_data[new_id] = {'name':name, 'dob': dob, 'blood group': bloodgrp, 'phone': phone, 'address': address}
+    patients_data[new_id] = {'name':name, 'dob': dob, 'blood group': bloodgrp,'gender':gender, 'phone': phone, 'address': address}
 
     print('Successfully Added with Registration ID: ',new_id)
     
 def list_patients():
-    print('Patient ID\t Name\t\t DOB\t Blood Group\t Phone Num\t Address')
+    print('Patient ID\t Name\t\t DOB\t Blood Group\t Gender\t Phone Num\t Address')
     for k,v in patients_data.items():
-        print(f'{k}\t\t{v['name']}\t {v['dob']}\t {v['blood group']}\t\t {v['phone']}\t {v['address']}')
+        print(f'{k}\t\t{v['name']}\t {v['dob']}\t {v['blood group']}\t\t {v['gender']}\t\t {v['phone']}\t {v['address']}')
 
     print('END OF LIST...')
     return

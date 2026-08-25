@@ -1,6 +1,6 @@
 from patient_manager import manage_patients_menu
 from log_manager import view_logs
-
+import sys
 
 
 def menu(user):
@@ -25,7 +25,7 @@ def menu(user):
                     case 3:
                         print('logging out...')
                         print('Exiting...')
-                        exit()
+                        sys.exit()
                     case _:
                         print('Enter a valid number')
         except ValueError as e:

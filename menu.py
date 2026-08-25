@@ -4,14 +4,16 @@ import sys
 
 
 def menu(user):
-    print('\n\t\t Clinic Management System')
-    print('\t\t************************')
-    print('\t\t   Welcome ',user)
-    print('''What would you like to do?
+    while True:
+        print("\033[H\033[J", end="")
+        print('\n\t\t Clinic Management System')
+        print('\t\t************************')
+        print('\t\t   Welcome ',user.capitalize())
+        print()
+        print('''What would you like to do?
             1. Manage Patients
             2. View logs
-            3. Logout and Exit''')
-    while True:
+            3. Logout and Exit\n''')
         try:
             ch = input('Enter your choice: ').strip()
             if not ch.isdigit():

@@ -5,6 +5,8 @@ from staff.staff_manager import manage_staff_menu
 from lab.lab_manager import manage_test_menu
 from patient.patient_manager import manage_patients_menu
 from medicine.medicine_manager import manage_medicine_menu
+from logs.log_manager import add_logs
+import sys
 
 def main():
     print('\t\t Welcome to CMS')
@@ -15,8 +17,12 @@ def main():
             if i == 3:
                 print('3 Invalid login attempts \nPlease try after Sometime\n')
                 #add to log file here
+                print('Adding to log file')
+                message = f"3 consecutive login fails. last used username='{user}'"
+                add_logs(message)
 
-                break
+                print('Application closing...')
+                sys.exit()
 
             try:
                 while True:
@@ -25,17 +31,20 @@ def main():
                         if user == '':
                             raise ValueError('Username cannot be empty\n') #empty username validation
                         if validate_username(user):
-                             break
+                            break
+                        else:
+                            raise ValueError('Username cannot be shorter than 6 characters')
                     except ValueError as e:
                          print(e)
                 while True:
                     try:
                         pwd = input('Enter Password: ').strip()
                         if pwd == '':
-                            validate_pwd(pwd)
                             raise ValueError('Password cannot be empty\n')
+                        if validate_pwd(pwd):
+                            break
                         else:
-                             break
+                            raise ValueError('Password cannot be shorter than 6 char')
                     except ValueError as e:
                          print(e)
                 if employee_data.get(user) != None:

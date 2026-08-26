@@ -2,11 +2,11 @@ from validation import validate_name,validate_bloodgrp,validate_phone,validate_d
 from patient.search_and_edit_patient import search_menu
 from datetime import datetime
 from data import patients_data
+from logs.log_manager import add_logs
 
 
 
-
-def add_patient():
+def add_patient(user):
     print('Adding New Patient')
     while True:
         try:
@@ -92,6 +92,10 @@ def add_patient():
 
     print('Successfully Added with Registration ID: ',new_id)
 
+    message = f"New Patient with ID-{new_id} was added by Receptionist-{user}"
+    add_logs(message)
+
+
 
 
 def list_patients():
@@ -103,11 +107,11 @@ def list_patients():
     return
     
 
-def manage_patients_menu():
+def manage_patients_menu(user):
     while True:
-        # print("\033[H\033[J", end="")
         print('\n\t\t CMS Manage Patient Menu')
         print('\t\t************************')
+        print('\t\tWelcome ',user)
         print('''What would you like to do?
                 1. Add Patients
                 2. View list of Patients
@@ -120,7 +124,7 @@ def manage_patients_menu():
             else:
                 match int(ch):
                     case 1:
-                        add_patient()
+                        add_patient(user)
                     case 2:
                         list_patients()
                     case 3:

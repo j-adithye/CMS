@@ -1,7 +1,7 @@
 from validation import validate_name,validate_phone,validate_date
 from data import test_data as data
-from search_and_edit_lab import search_menu
-
+from lab.search_and_edit_lab import search_menu
+from logs.log_manager import add_logs
 
 
 def list_test():
@@ -14,7 +14,7 @@ def list_test():
 
 
 
-def add_test():
+def add_test(user):
     print('Adding New Patient')
     while True:
         try:
@@ -94,12 +94,15 @@ def add_test():
     data[new_id] = {'test name': name, 'low range': low, 'high range': high, 'unit':unit , 'price':price, 'is_active': True}
 
     print('Successfully Added with test ID: ',new_id)
+    message = f"New Test with ID-{new_id} was added by Lab Technician-{user}"
+    add_logs(message)
 
 
-def manage_test_menu():
+def manage_test_menu(user):
     while True:
-        print('\n\t\t CMS Manage Patient Menu')
+        print('\n\t\t CMS Manage Lab Menu')
         print('\t\t************************')
+        print('\t\tWelcome ',user)
         print('''What would you like to do?
                 1. Add test
                 2. View list of test

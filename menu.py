@@ -1,5 +1,5 @@
 from patient.patient_manager import manage_patients_menu
-from log_manager import view_logs
+from logs.log_manager import view_logs
 import sys
 
 

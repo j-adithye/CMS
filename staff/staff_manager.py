@@ -1,9 +1,10 @@
 from validation import validate_name,validate_phone,validate_date
 from data import staff_data
 from staff.search_and_edit_staff import search_menu
+from logs.log_manager import add_logs
 
 
-def add_staff():
+def add_staff(user):
     print('Adding New Patient')
     while True:
         try:
@@ -91,6 +92,8 @@ def add_staff():
     staff_data[new_id] = {'name':name, 'dob': dob, 'phone': phone, 'address': address,'doj': doj,'salary': salary, 'is_active': True}
 
     print('Successfully Added with Staff ID: ',new_id)
+    message = f"New Staff with ID-{new_id} was added by Admin-{user}"
+    add_logs(message)
 
 
 def list_staff():
@@ -102,11 +105,13 @@ def list_staff():
     return
 
 
-def manage_staff_menu():
+def manage_staff_menu(user):
+    
     while True:
         # print("\033[H\033[J", end="")
         print('\n\t\t CMS Manage Patient Menu')
         print('\t\t************************')
+        print('\t\tWelcome ',user)
         print('''What would you like to do?
                 1. Add Staff
                 2. View list of Staff
@@ -119,7 +124,7 @@ def manage_staff_menu():
             else:
                 match int(ch):
                     case 1:
-                        add_staff()
+                        add_staff(user)
                     case 2:
                         list_staff()
                     case 3:

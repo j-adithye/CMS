@@ -1,7 +1,7 @@
 from validation import validate_name,validate_phone,validate_date
 from data import medicine_data as data
-from search_and_edit_medicine import search_menu
-
+from medicine.search_and_edit_medicine import search_menu
+from logs.log_manager import add_logs
 
 
 def list_medicine():
@@ -14,7 +14,7 @@ def list_medicine():
 
 
 
-def add_medicine():
+def add_medicine(user):
     print('Adding New Patient')
     while True:
         try:
@@ -94,12 +94,15 @@ def add_medicine():
     data[new_id] = {'medicine name': name, 'company name': cmpny_name , 'generic name': gen_name , 'quantity':qty, 'price':price , 'is_active': True}
 
     print('Successfully Added with Medicine ID: ',new_id)
+    message = f"New Medicine with ID-{new_id} was added by Pharmacist-{user}"
+    add_logs(message)
 
 
-def manage_medicine_menu():
+def manage_medicine_menu(user):
     while True:
-        print('\n\t\t CMS Manage Patient Menu')
+        print('\n\t\t CMS Manage Pharmacy Menu')
         print('\t\t************************')
+        print('\t\tWelcome ',user)
         print('''What would you like to do?
                 1. Add Medicine
                 2. View list of Medicine
@@ -112,7 +115,7 @@ def manage_medicine_menu():
             else:
                 match int(ch):
                     case 1:
-                        add_medicine()
+                        add_medicine(user)
                     case 2:
                         list_medicine()
                     case 3:

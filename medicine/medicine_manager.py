@@ -29,7 +29,7 @@ def add_medicine(user):
     while True:
         try:
             cmpny_name = input('Enter company name: ').strip().capitalize()
-            if name == '':
+            if cmpny_name == '':
                 raise ValueError('Company name cannot be empty. Try again...')
             else:
                 break
@@ -44,7 +44,7 @@ def add_medicine(user):
     while True:
         try:
             gen_name = input('Enter generic name: ').strip().capitalize()
-            if name == '':
+            if gen_name == '':
                 raise ValueError('Generic name cannot be empty. Try again...')
             else:
                 break

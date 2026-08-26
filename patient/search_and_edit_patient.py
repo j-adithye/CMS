@@ -1,5 +1,5 @@
 from data import patients_data as data
-from validation import validate_name
+from validation import validate_name,validate_phone
 
 def edit_patient(k,v):
     while True:

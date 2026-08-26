@@ -1,5 +1,5 @@
-from validation import validate_name,validate_phone,validate_date
-from data import staff_data
+from validation import validate_name,validate_phone,validate_date,validate_dob,validate_username,validate_pwd,validate_role
+from data import staff_data, employee_data
 from staff.search_and_edit_staff import search_menu
 from logs.log_manager import add_logs
 
@@ -42,7 +42,10 @@ def add_staff(user):
             if dob == '':
                 raise ValueError('DOB cannot be empty. Try again...')
             elif validate_date(dob):
-                break
+                if validate_dob(dob):
+                    break
+                else:
+                    raise ValueError('Employee should be older than 18')
             else:
                 raise ValueError('Date of Birth should in format DD-MM-YYYY. Try again...')
         except ValueError as e:
@@ -84,6 +87,49 @@ def add_staff(user):
         except ValueError as e:
             print(e)
 
+    while True:
+        try:
+            username = input('Enter Username: ').strip()
+            if username == '':
+                raise ValueError('Username cannot be empty.Try again...')
+            else:
+                if validate_username(username):
+                    for k,v in employee_data.items():
+                        if k == username:
+                            raise ValueError('Username already Exists. Try another one...')
+                        else:
+                            break
+                    break
+                else:
+                    raise ValueError('Username should be longer than 5 characters. Try again...')
+        except ValueError as e:
+            print(e)
+
+    while True:
+            try:
+                pwd = input('Enter Password: ').strip()
+                if pwd == '':
+                    raise ValueError('Role cannot be empty.Try again...')
+                else:
+                    if validate_pwd(pwd):
+                        break
+                    else:
+                        raise ValueError('Role should be longer than 5 characters. Try again...')
+            except ValueError as e:
+                print(e)
+
+    while True:
+        try:
+            role = input('Enter Role: ').strip()
+            if role == '':
+                raise ValueError('Role cannot be empty.Try again...')
+            else:
+                if validate_role(role):
+                    break
+                else:
+                    raise ValueError('This role does not exist. Try again...')
+        except ValueError as e:
+            print(e)
 
     if not staff_data:
         new_id = 1001
@@ -91,8 +137,10 @@ def add_staff(user):
         new_id = next(reversed(staff_data)) + 1
     staff_data[new_id] = {'name':name, 'dob': dob, 'phone': phone, 'address': address,'doj': doj,'salary': salary, 'is_active': True}
 
+    employee_data[username] = {'password':pwd, 'role':role}
+
     print('Successfully Added with Staff ID: ',new_id)
-    message = f"New Staff with ID-{new_id} was added by Admin-{user}"
+    message = f"New Staff with ID-{new_id} with role-{role} was added by Admin-{user}"
     add_logs(message)
 
 
@@ -109,9 +157,9 @@ def manage_staff_menu(user):
     
     while True:
         # print("\033[H\033[J", end="")
-        print('\n\t\t CMS Manage Patient Menu')
+        print('\n\t\t CMS Manage Staff Menu')
         print('\t\t************************')
-        print('\t\tWelcome ',user)
+        print('\t\t  Welcome ',user)
         print('''What would you like to do?
                 1. Add Staff
                 2. View list of Staff

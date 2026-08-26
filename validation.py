@@ -1,9 +1,12 @@
 import re
-from datetime import datetime
+from datetime import datetime, date
 
 
 
-
+def validate_role(role):
+    if role in ['admin','receptionist','technician','pharmacist']:
+        return True
+    return False
 def validate_username(user):
     if user in ['a','r','p','l']:
         return True
@@ -50,3 +53,15 @@ def validate_date(date):
             return False
 
         return True
+
+def validate_dob(dob):
+    dob = datetime.strptime(dob, "%d-%m-%Y").date()
+    today = date.today()
+
+    age = today.year - dob.year
+
+    # if birthday not yet this year
+    if (today.month, today.day) < (dob.month, dob.day):
+        age -= 1
+
+    return age >= 18

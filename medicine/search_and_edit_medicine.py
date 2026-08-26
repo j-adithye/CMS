@@ -126,7 +126,12 @@ def search_name():
             if name == '':
                 raise ValueError('Medicine name cannot be empty. Try again...')
             else:
-                break
+                for k,v in data.items():
+                    if v['medicine name'] == name:
+                        view_search(k,v)
+                        return
+                print('Medicine does not exist')
+                return
         except ValueError as e:
             print(e)
 

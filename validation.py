@@ -5,14 +5,14 @@ from datetime import datetime
 
 
 def validate_username(user):
-    if user in ['a','b','p','l']:
+    if user in ['a','r','p','l']:
         return True
     if len(user)>5:
         return True
     return False
 
 def validate_pwd(pwd):
-    if pwd in ['a','b','p','l']:
+    if pwd in ['a','r','p','l']:
         return True
     if len(pwd)>5:
         return True

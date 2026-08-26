@@ -1,4 +1,3 @@
-from validation import validate_name,validate_phone,validate_date
 from data import test_data as data
 from lab.search_and_edit_lab import search_menu
 from logs.log_manager import add_logs
@@ -7,7 +6,7 @@ from logs.log_manager import add_logs
 def list_test():
     print('test ID\t test name\t Low Range\t High Range\t UNit\t Price\t Is Active')
     for k,v in data.items():
-        print(f'{k}\t{v['test name']}\t {v['low range']}\t {v['high range']}\t {v['unit']}\t {v['price']}\t {v['is_active']}')
+        print(f'{k}\t  {v['test name']}\t\t {v['low range']}\t\t {v['high range']}\t\t {v['unit']}\t {v['price']}\t {v['is_active']}')
 
     print('END OF LIST...')
     return
@@ -15,21 +14,18 @@ def list_test():
 
 
 def add_test(user):
-    print('Adding New Patient')
+    print('Adding New Test')
     while True:
         try:
             name = input('Enter test name: ').strip().capitalize()
             if name == '':
                 raise ValueError('Test name cannot be empty. Try again...')
             else:
-                if validate_name(name):
-                    break
-                else:
-                    raise ValueError('Invalid name. Try again...')
+                break
         except ValueError as e:
             print(e)
 
-    for k,v in data:
+    for k,v in data.items():
         if v['test name'] == name:
             print('Test alredy exists with Test ID:',k)
             return
@@ -42,7 +38,7 @@ def add_test(user):
             elif not low.isdigit():
                 raise ValueError('Enter number only...')
             else:
-                low = int(price)
+                low = int(low)
                 break
         except ValueError as e:
             print(e)
@@ -55,7 +51,7 @@ def add_test(user):
             elif not high.isdigit():
                 raise ValueError('Enter number only...')
             else:
-                high = int(price)
+                high = int(high)
                 break
         except ValueError as e:
             print(e)

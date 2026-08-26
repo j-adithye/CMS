@@ -4,7 +4,7 @@ from validation import validate_name
 
 def edit_test(k,v):
     while True:
-        print('''Which field do you want to edit the Price''')
+        print('''Do you want to edit the Price?''')
         try:
             price = input('Enter Price in Rs: ').strip()
             if price == '':
@@ -40,9 +40,9 @@ def disable_test(k,v):
 def view_search(k,v):
     print('\t\tCMS test View')
     print('\t   '+'='*25)
-    print(f'test Name: {v['name']}\t\t test Registration Number: {k}')
+    print(f'Test Name: {v['test name']}\t\t test Registration Number: {k}')
     print(f'Low Range: {v['low range']}\t\t High Range: {v['high range']}\t Unit: {v['unit']}')
-    print(f' Price:{v['price']}\t Is Active: {v['is_active']}')
+    print(f'Price:{v['price']}\t Is Active: {v['is_active']}')
 
     print('''\nHow would you like to proceed?
         1. Edit test
@@ -105,7 +105,7 @@ def search_menu():
                 match int(ch):
                     case 1:
                         search_reg()
-                    case 3:
+                    case 2:
                         print('Returning to main menu....\n')
                         return
                     case _:

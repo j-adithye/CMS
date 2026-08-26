@@ -33,7 +33,7 @@ def add_patient(user):
         except ValueError as e:
             print(e)
 
-    for k,v in patients_data:
+    for k,v in patients_data.items():
         if v['phone'] == phone and v['name'] == name:
             print('Patient alredy exists with Registration number:',k)
             return

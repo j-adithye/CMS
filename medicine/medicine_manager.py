@@ -15,7 +15,7 @@ def list_medicine():
 
 
 def add_medicine(user):
-    print('Adding New Patient')
+    print('Adding New Medicine')
     while True:
         try:
             name = input('Enter medicine name: ').strip().capitalize()
@@ -42,7 +42,7 @@ def add_medicine(user):
         except ValueError as e:
             print(e)
 
-    for k,v in data:
+    for k,v in data.items():
         if v['company name'] == cmpny_name and v['medicine name'] == name:
             print('Medicine alredy exists with Medicine ID:',k)
             return

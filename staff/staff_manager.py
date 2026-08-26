@@ -5,7 +5,7 @@ from logs.log_manager import add_logs
 
 
 def add_staff(user):
-    print('Adding New Patient')
+    print('Adding New Staff')
     while True:
         try:
             name = input('Enter Full name: ').strip().capitalize()
@@ -31,7 +31,7 @@ def add_staff(user):
         except ValueError as e:
             print(e)
 
-    for k,v in staff_data:
+    for k,v in staff_data.items():
         if v['phone'] == phone and v['name'] == name:
             print('Staff alredy exists with Staff ID:',k)
             return

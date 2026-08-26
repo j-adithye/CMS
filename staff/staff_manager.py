@@ -94,12 +94,10 @@ def add_staff(user):
                 raise ValueError('Username cannot be empty.Try again...')
             else:
                 if validate_username(username):
-                    for k,v in employee_data.items():
-                        if k == username:
-                            raise ValueError('Username already Exists. Try another one...')
-                        else:
-                            break
-                    break
+                    if username in employee_data:
+                        raise ValueError('Username already Exists. Try another one...')
+                    else:
+                        break
                 else:
                     raise ValueError('Username should be longer than 5 characters. Try again...')
         except ValueError as e:
@@ -109,12 +107,12 @@ def add_staff(user):
             try:
                 pwd = input('Enter Password: ').strip()
                 if pwd == '':
-                    raise ValueError('Role cannot be empty.Try again...')
+                    raise ValueError('Password cannot be empty.Try again...')
                 else:
                     if validate_pwd(pwd):
                         break
                     else:
-                        raise ValueError('Role should be longer than 5 characters. Try again...')
+                        raise ValueError('Password should be longer than 5 characters. Try again...')
             except ValueError as e:
                 print(e)
 

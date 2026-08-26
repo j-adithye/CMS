@@ -11,8 +11,8 @@ def main():
     print('\t\t Welcome to CMS')
     print('\t\t  Plese Login')
     print('\t\t*****************')
-
-    for i in range(4):
+    i = 0
+    while i<4:
             if i == 3:
                 print('3 Invalid login attempts \nPlease try after Sometime\n')
                 #add to log file here
@@ -58,17 +58,20 @@ def main():
                             manage_medicine_menu(user)
 
                         elif employee_data.get(user).get('role') == 'lab technician':
-                            manage_test_menu
+                            manage_test_menu(user)
 
                         else:
                             print(f'Login attempt {i+1} failed\n')
+                            i += 1
                             raise Exception('You are not a Registered Employee')
                      else:
                         print(f'Login attempt {i+1} failed\n')
+                        i += 1
                         raise ValueError('Username or Password Incorrect\n')
                         
                 else:
                     print(f'Login attempt {i+1} failed\n')
+                    i += 1
                     raise ValueError('Username or Password Incorrect\n')
             except Exception as e:
                 print(e)

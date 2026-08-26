@@ -9,4 +9,4 @@ staff_data = {1001:{'name':'Ramesh Kumar', 'dob': '12-12-2020', 'phone': 9656244
 
 medicine_data = {101:{'medicine name':'paracetamol', 'company name': 'Para ceta Pharma', 'generic name': 'Paracetamol', 'quantity':5000, 'price':50000, 'is_active': True}}
 
-test_data = {101:{'test name':'BP test','low range':'80', 'high range': '120', 'unit':'mmHg', 'price':750}}
+test_data = {101:{'test name':'BP test','low range':'80', 'high range': '120', 'unit':'mmHg', 'price':750, 'is_active': True}}

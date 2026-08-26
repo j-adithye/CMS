@@ -115,7 +115,7 @@ def manage_test_menu(user):
             else:
                 match int(ch):
                     case 1:
-                        add_test()
+                        add_test(user)
                     case 2:
                         list_test()
                     case 3:

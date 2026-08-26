@@ -1,6 +1,7 @@
 from validation import validate_username,validate_pwd
-from menu import menu
-from data import staff_data
+from menu import staff_menu
+from data import employee_data
+from staff.staff_manager import manage_staff_menu
 
 def main():
     print('\t\t Welcome to CMS')
@@ -33,10 +34,14 @@ def main():
                              break
                     except ValueError as e:
                          print(e)
-                if staff_data.get(user) != None:
-                     if staff_data.get(user).get('password') == pwd:
-                        if staff_data.get(user).get('role') == 'staff':
-                            menu(user)
+                if employee_data.get(user) != None:
+                     if employee_data.get(user).get('password') == pwd:
+                        if employee_data.get(user).get('role') == 'staff':
+                            staff_menu(user)
+                        elif employee_data.get(user).get('role') == 'admin':
+                            manage_staff_menu(user)
+                        elif employee_data.get(user).get('role') == 'pharmacist':
+                            manage_staff_menu(user)
                         else:
                             print(f'Login attempt {i+1} failed\n')
                             raise Exception('You are not a staff')

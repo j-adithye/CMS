@@ -1,12 +1,9 @@
-from validation import validate_name,validate_bloodgrp,validate_phone,validate_dob
-from search_patient import search_menu
-from datetime import datetime
-from data import patients_data
+from validation import validate_name,validate_phone,validate_date
+from data import staff_data
+from staff.search_and_edit_staff import search_menu
 
 
-
-
-def add_patient():
+def add_staff():
     print('Adding New Patient')
     while True:
         try:
@@ -33,9 +30,9 @@ def add_patient():
         except ValueError as e:
             print(e)
 
-    for k,v in patients_data:
+    for k,v in staff_data:
         if v['phone'] == phone and v['name'] == name:
-            print('Patient alredy exists with Registration number:',k)
+            print('Staff alredy exists with Staff ID:',k)
             return
 
     while True:
@@ -43,25 +40,13 @@ def add_patient():
             dob = input('Enter Age: ').strip()
             if dob == '':
                 raise ValueError('Age cannot be empty. Try again...')
-            elif validate_dob(dob):
+            elif validate_date(dob):
                 break
             else:
                 raise ValueError('Date of Birth should in format DD-MM-YYYY. Try again...')
         except ValueError as e:
             print(e)
 
-    while True:
-        try:
-            bloodgrp = input('Enter Blood Group(eg: A+, B-, etc...): ').strip().upper()
-            if bloodgrp == '':
-                raise ValueError('Blood Group cannot be empty. Try again...')
-            else:
-                if validate_bloodgrp(bloodgrp):
-                    break
-                else:
-                    raise ValueError('Invalid blood group. Try again...')
-        except ValueError as e:
-            print(e)
 
     while True:
         try:
@@ -75,50 +60,57 @@ def add_patient():
 
     while True:
         try:
-            gender = input('Enter Gender(M/F/O): ').strip().upper()
-            if gender == ''or gender not in ['F','M','O']:
-                raise ValueError('Invalid gender. Try again...')
+            doj = input('Enter Date of Joining: ').strip()
+            if doj == '':
+                raise ValueError('DOJ cannot be empty. Try again...')
+            elif validate_date(doj):
+                break
             else:
+                raise ValueError('Date of Joining should in format DD-MM-YYYY. Try again...')
+        except ValueError as e:
+            print(e)
+
+    while True:
+        try:
+            salary = input('Enter salary in Rs: ').strip()
+            if salary == '':
+                raise ValueError('Salary cannot be empty. Try again...')
+            elif not salary.isdigit():
+                raise ValueError('Enter number only...')
+            else:
+                salary = int(salary)
                 break
         except ValueError as e:
             print(e)
 
 
-    if not patients_data:
+    if not staff_data:
         new_id = 1001
     else:
-        new_id = next(reversed(patients_data)) + 1
-    patients_data[new_id] = {'name':name, 'dob': dob, 'blood group': bloodgrp, 'gender':gender, 'phone': phone, 'address': address, 'created on': datetime.today().date().strftime("%d-%m-%Y"), 'is_active': True}
+        new_id = next(reversed(staff_data)) + 1
+    staff_data[new_id] = {'name':name, 'dob': dob, 'phone': phone, 'address': address,'doj': doj,'salary': salary, 'is_active': True}
 
-    print('Successfully Added with Registration ID: ',new_id)
+    print('Successfully Added with Staff ID: ',new_id)
 
 
-
-def list_patients():
-    print('Patient ID\t Name\t\t DOB\t Blood Group\t Gender\t Phone Num\t Address\t Created On\t Is Active')
-    for k,v in patients_data.items():
-        print(f'{k}\t\t{v['name']}\t {v['dob']}\t {v['blood group']}\t {v['gender']}\t\t {v['phone']}\t {v['address']}\t {v['created on']}\t {v['is_active']}')
+def list_staff():
+    print('Staff ID\t Name\t\t DOB\t Phone Num\t Address\t DOJ\t Salary\t Is Active')
+    for k,v in staff_data.items():
+        print(f'{k}\t\t{v['name']}\t {v['dob']}\t\t {v['phone']}\t {v['address']}\t {v['doj']}\t {v['salary']}\t {v['is_active']}')
 
     print('END OF LIST...')
     return
-    
 
 
-
-    
-
-
-
-
-def manage_patients_menu():
+def manage_staff_menu():
     while True:
         # print("\033[H\033[J", end="")
         print('\n\t\t CMS Manage Patient Menu')
         print('\t\t************************')
         print('''What would you like to do?
-                1. Add Patients
-                2. View list of Patients
-                3. Search and View Patient
+                1. Add Staff
+                2. View list of Staff
+                3. Search and View Staff
                 4. Main Menu''')
         try:
             ch = input('Enter your choice: ').strip()
@@ -127,9 +119,9 @@ def manage_patients_menu():
             else:
                 match int(ch):
                     case 1:
-                        add_patient()
+                        add_staff()
                     case 2:
-                        list_patients()
+                        list_staff()
                     case 3:
                         search_menu()    
                     case 4:

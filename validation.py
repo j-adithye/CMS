@@ -28,13 +28,13 @@ def validate_phone(phone):
         return True
     return False
 
-def validate_dob(dob):
+def validate_date(date):
     pattern = r"\d{2}-\d{2}-\d{4}"
-    if not re.fullmatch(pattern, dob):
+    if not re.fullmatch(pattern, date):
         return False
     else:
         try:
-            date = datetime.strptime(dob, "%d-%m-%Y").date()
+            date = datetime.strptime(date, "%d-%m-%Y").date()
         except ValueError:
             return False
         

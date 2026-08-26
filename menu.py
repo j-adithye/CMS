@@ -1,9 +1,10 @@
-from patient_manager import manage_patients_menu
+from patient.patient_manager import manage_patients_menu
 from log_manager import view_logs
 import sys
 
 
-def menu(user):
+def staff_menu(user):
+    
     while True:
         print("\033[H\033[J", end="")
         print('\n\t\t Clinic Management System')

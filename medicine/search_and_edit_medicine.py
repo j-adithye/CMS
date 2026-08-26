@@ -69,7 +69,7 @@ def disable_medicine(k,v):
 def view_search(k,v):
     print('\t\tCMS Medicine View')
     print('\t   '+'='*25)
-    print(f'Medicine Name: {v['name']}\t\t Medicine Registration Number: {k}')
+    print(f'Medicine Name: {v['medicine name']}\t\t Medicine Registration Number: {k}')
     print(f'Company name: {v['company name']}\t\t Generic name: {v['generic name']}')
     print(f'Quantity: {v['quantity']}\t Price:{v['price']}\t Is Active: {v['is_active']}')
 
@@ -118,17 +118,14 @@ def search_reg():
         except ValueError as e:
             print(e)
 
-def search_phone():
+def search_name():
     while True:
         try:
             name = input('Enter medicine name: ').strip().capitalize()
             if name == '':
                 raise ValueError('Medicine name cannot be empty. Try again...')
             else:
-                if validate_name(name):
-                    break
-                else:
-                    raise ValueError('Invalid name. Try again...')
+                break
         except ValueError as e:
             print(e)
 
@@ -150,7 +147,7 @@ def search_menu():
                     case 1:
                         search_reg()
                     case 2:
-                        search_phone()
+                        search_name()
                     case 3:
                         print('Returning to main menu....\n')
                         return

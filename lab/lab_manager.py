@@ -103,7 +103,7 @@ def manage_test_menu(user):
                 1. Add test
                 2. View list of test
                 3. Search and View test
-                4. Main Menu''')
+                4. Logout''')
         try:
             ch = input('Enter your choice: ').strip()
             if not ch.isdigit():
@@ -117,7 +117,7 @@ def manage_test_menu(user):
                     case 3:
                         search_menu()    
                     case 4:
-                        print('Returning to main menu....\n')
+                        print('Logging out....\n')
                         return
                     case _:
                         print('Enter a valid number')

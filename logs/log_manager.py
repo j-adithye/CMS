@@ -2,7 +2,7 @@ from datetime import datetime
 
 
 def add_logs(message):
-    with open('log.txt','a') as log:
+    with open('logs.txt','a') as log:
         time = datetime.now().strftime("%d-%m-%Y %H:%M:%S")
         log.write(f"[{time}] {message}\n")
     return

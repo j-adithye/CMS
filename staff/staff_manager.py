@@ -116,7 +116,7 @@ def manage_staff_menu(user):
                 1. Add Staff
                 2. View list of Staff
                 3. Search and View Staff
-                4. Main Menu''')
+                4. Logout''')
         try:
             ch = input('Enter your choice: ').strip()
             if not ch.isdigit():
@@ -130,7 +130,7 @@ def manage_staff_menu(user):
                     case 3:
                         search_menu()    
                     case 4:
-                        print('Returning to main menu....\n')
+                        print('Logging out....\n')
                         return
                     case _:
                         print('Enter a valid number')

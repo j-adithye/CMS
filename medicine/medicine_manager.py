@@ -5,9 +5,9 @@ from logs.log_manager import add_logs
 
 
 def list_medicine():
-    print('Medicine ID\t Medicine name\t Company name\t Generic name\t Quantity\t Price\t Is Active')
+    print('Medicine ID\t Medicine name\t Company name\t\t Generic name\t\t Quantity\t Price\t Is Active')
     for k,v in data.items():
-        print(f'{k}\t{v['medicine name']}\t {v['company name']}\t {v['generic name']}\t {v['quantity']}\t {v['price']}\t {v['is_active']}')
+        print(f'{k}\t\t {v['medicine name']}\t {v['company name']}\t {v['generic name']}\t\t {v['quantity']}\t\t {v['price']}\t {v['is_active']}')
 
     print('END OF LIST...')
     return
@@ -22,10 +22,7 @@ def add_medicine(user):
             if name == '':
                 raise ValueError('Medicine name cannot be empty. Try again...')
             else:
-                if validate_name(name):
-                    break
-                else:
-                    raise ValueError('Invalid name. Try again...')
+                break
         except ValueError as e:
             print(e)
 
@@ -35,10 +32,7 @@ def add_medicine(user):
             if name == '':
                 raise ValueError('Company name cannot be empty. Try again...')
             else:
-                if validate_name(name):
-                    break
-                else:
-                    raise ValueError('Invalid name. Try again...')
+                break
         except ValueError as e:
             print(e)
 
@@ -53,10 +47,7 @@ def add_medicine(user):
             if name == '':
                 raise ValueError('Generic name cannot be empty. Try again...')
             else:
-                if validate_name(name):
-                    break
-                else:
-                    raise ValueError('Invalid name. Try again...')
+                break
         except ValueError as e:
             print(e)
 
@@ -107,7 +98,7 @@ def manage_medicine_menu(user):
                 1. Add Medicine
                 2. View list of Medicine
                 3. Search and View Medicine
-                4. Main Menu''')
+                4. Logout''')
         try:
             ch = input('Enter your choice: ').strip()
             if not ch.isdigit():
@@ -121,7 +112,7 @@ def manage_medicine_menu(user):
                     case 3:
                         search_menu()    
                     case 4:
-                        print('Returning to main menu....\n')
+                        print('Logging out....\n')
                         return
                     case _:
                         print('Enter a valid number')

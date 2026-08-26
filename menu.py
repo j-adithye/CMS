@@ -3,7 +3,7 @@ from logs.log_manager import view_logs
 import sys
 
 
-def staff_menu(user):
+def receptionist_menu(user):
     
     while True:
         print("\033[H\033[J", end="")
@@ -22,7 +22,7 @@ def staff_menu(user):
             else:
                 match int(ch):
                     case 1:
-                        manage_patients_menu()
+                        manage_patients_menu(user)
                     case 2:
                         view_logs()
                     case 3:
@@ -30,6 +30,6 @@ def staff_menu(user):
                         print('Exiting...')
                         sys.exit()
                     case _:
-                        print('Enter a valid number')
+                        print('Enter a valid choice')
         except ValueError as e:
             print(e)

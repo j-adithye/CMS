@@ -1,9 +1,8 @@
 from validation import validate_username,validate_pwd
-from menu import staff_menu
+from menu import receptionist_menu
 from data import employee_data
 from staff.staff_manager import manage_staff_menu
 from lab.lab_manager import manage_test_menu
-from patient.patient_manager import manage_patients_menu
 from medicine.medicine_manager import manage_medicine_menu
 from logs.log_manager import add_logs
 import sys
@@ -17,7 +16,7 @@ def main():
             if i == 3:
                 print('3 Invalid login attempts \nPlease try after Sometime\n')
                 #add to log file here
-                print('Adding to log file')
+                print('Updating log file...\n')
                 message = f"3 consecutive login fails. last used username='{user}'"
                 add_logs(message)
 
@@ -49,8 +48,8 @@ def main():
                          print(e)
                 if employee_data.get(user) != None:
                      if employee_data.get(user).get('password') == pwd:
-                        if employee_data.get(user).get('role') == 'staff':
-                            manage_patients_menu(user)
+                        if employee_data.get(user).get('role') == 'receptionist':
+                            receptionist_menu(user)
 
                         elif employee_data.get(user).get('role') == 'admin':
                             manage_staff_menu(user)

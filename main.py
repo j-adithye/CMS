@@ -2,6 +2,9 @@ from validation import validate_username,validate_pwd
 from menu import staff_menu
 from data import employee_data
 from staff.staff_manager import manage_staff_menu
+from lab.lab_manager import manage_test_menu
+from patient.patient_manager import manage_patients_menu
+from medicine.medicine_manager import manage_medicine_menu
 
 def main():
     print('\t\t Welcome to CMS')
@@ -29,6 +32,7 @@ def main():
                     try:
                         pwd = input('Enter Password: ').strip()
                         if pwd == '':
+                            validate_pwd(pwd)
                             raise ValueError('Password cannot be empty\n')
                         else:
                              break
@@ -37,14 +41,20 @@ def main():
                 if employee_data.get(user) != None:
                      if employee_data.get(user).get('password') == pwd:
                         if employee_data.get(user).get('role') == 'staff':
-                            staff_menu(user)
+                            manage_patients_menu(user)
+
                         elif employee_data.get(user).get('role') == 'admin':
                             manage_staff_menu(user)
+
                         elif employee_data.get(user).get('role') == 'pharmacist':
-                            manage_staff_menu(user)
+                            manage_medicine_menu(user)
+
+                        elif employee_data.get(user).get('role') == 'lab technician':
+                            manage_test_menu
+
                         else:
                             print(f'Login attempt {i+1} failed\n')
-                            raise Exception('You are not a staff')
+                            raise Exception('You are not a Registered Employee')
                      else:
                         print(f'Login attempt {i+1} failed\n')
                         raise ValueError('Username or Password Incorrect\n')

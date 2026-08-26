@@ -5,10 +5,14 @@ from datetime import datetime
 
 
 def validate_username(user):
-    return True
+    if len(user)>5:
+        return True
+    return False
 
 def validate_pwd(pwd):
-    return True
+    if len(pwd)>5:
+        return True
+    return False
 
 def validate_name(name):
     pattern = r"^(?=(?:.*[A-Za-z]){3,}$)[A-Za-z]+(?: [A-Za-z]+)? [A-Za-z]+$"

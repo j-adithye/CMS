@@ -6,7 +6,6 @@ import sys
 def receptionist_menu(user):
     
     while True:
-        print("\033[H\033[J", end="")
         print('\n\t\t Clinic Management System')
         print('\t\t************************')
         print('\t\t   Welcome ',user.capitalize())

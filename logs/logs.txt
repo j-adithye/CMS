@@ -4,3 +4,5 @@
 [26-08-2026 23:46:40] 3 consecutive login fails. last used username='fgnjrgtnjr'
 [27-08-2026 00:00:12] New Test with ID-102 was added by Lab Technician-l
 [27-08-2026 00:13:45] New Medicine with ID-102 was added by Pharmacist-p
+[27-08-2026 00:39:25] New Staff with ID-1002 was added by Admin-a
+[27-08-2026 01:00:49] New Patient with ID-100002 was added by Receptionist-r

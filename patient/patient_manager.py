@@ -40,9 +40,9 @@ def add_patient(user):
 
     while True:
         try:
-            dob = input('Enter Age: ').strip()
+            dob = input('Enter Date of Birth: ').strip()
             if dob == '':
-                raise ValueError('Age cannot be empty. Try again...')
+                raise ValueError('DOB cannot be empty. Try again...')
             elif validate_date(dob):
                 break
             else:
@@ -101,7 +101,7 @@ def add_patient(user):
 def list_patients():
     print('Patient ID\t Name\t\t DOB\t Blood Group\t Gender\t Phone Num\t Address\t Created On\t Is Active')
     for k,v in patients_data.items():
-        print(f'{k}\t\t{v['name']}\t {v['dob']}\t {v['blood group']}\t {v['gender']}\t\t {v['phone']}\t {v['address']}\t {v['created on']}\t {v['is_active']}')
+        print(f'{k}\t\t{v['name']}\t {v['dob']}\t {v['blood group']}\t {v['gender']}\t {v['phone']}\t {v['address']}\t {v['created on']}\t {v['is_active']}')
 
     print('END OF LIST...')
     return

@@ -1,5 +1,5 @@
 from validation import validate_username,validate_pwd
-from menu import receptionist_menu
+from patient.menu import receptionist_menu
 from data import employee_data
 from staff.staff_manager import manage_staff_menu
 from lab.lab_manager import manage_test_menu

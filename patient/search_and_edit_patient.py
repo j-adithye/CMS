@@ -1,5 +1,5 @@
 from data import patients_data as data
-from validation import validate_phone
+from validation import validate_name
 
 def edit_patient(k,v):
     while True:
@@ -32,7 +32,7 @@ def edit_patient(k,v):
                                 name = input('Enter new name: ')
                                 if name == '':
                                     raise ValueError('Name cannot be empty.')
-                                elif validate_phone(name):
+                                elif validate_name(name):
                                     v['name'] = name
                                     data[k] = v
                                     return

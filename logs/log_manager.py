@@ -9,7 +9,7 @@ def add_logs(message):
 
 def view_logs():
     try:
-        with open("activity_log.txt", "r") as log:
+        with open("logs/logs.txt", "r") as log:
             logs = log.read()
 
         if logs:

@@ -38,9 +38,9 @@ def add_staff(user):
 
     while True:
         try:
-            dob = input('Enter Age: ').strip()
+            dob = input('Enter Date of Birth: ').strip()
             if dob == '':
-                raise ValueError('Age cannot be empty. Try again...')
+                raise ValueError('DOB cannot be empty. Try again...')
             elif validate_date(dob):
                 break
             else:
@@ -97,9 +97,9 @@ def add_staff(user):
 
 
 def list_staff():
-    print('Staff ID\t Name\t\t DOB\t Phone Num\t Address\t DOJ\t Salary\t Is Active')
+    print('Staff ID\t Name\t\t DOB\t\t Phone Num\t Address\t DOJ\t\t Salary\t Is Active')
     for k,v in staff_data.items():
-        print(f'{k}\t\t{v['name']}\t {v['dob']}\t\t {v['phone']}\t {v['address']}\t {v['doj']}\t {v['salary']}\t {v['is_active']}')
+        print(f'{k}\t\t{v['name']}\t {v['dob']}\t {v['phone']}\t {v['address']}\t {v['doj']}\t {v['salary']}\t {v['is_active']}')
 
     print('END OF LIST...')
     return

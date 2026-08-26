@@ -1,5 +1,5 @@
 from data import staff_data as data
-from validation import validate_name
+from validation import validate_name,validate_phone
 
 
 def edit_staff(k,v):
@@ -53,9 +53,10 @@ def disable_staff(k,v):
             if choice == 'y':
                 v['is_active'] = False
                 data[k] = v
+                print('Staff disabled')
                 return
             elif choice == 'n':
-                print('Patient not disabled. Returning to previous menu...')
+                print('Staff not disabled. Returning to previous menu...')
                 search_menu()
             else:
                 print('Enter a valid choice. Try again...')

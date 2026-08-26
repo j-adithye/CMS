@@ -28,9 +28,10 @@ def disable_test(k,v):
             if choice == 'y':
                 v['is_active'] = False
                 data[k] = v
+                print('Test Disabled')
                 return
             elif choice == 'n':
-                print('test not disabled. Returning to previous menu...')
+                print('Test not disabled. Returning to previous menu...')
                 search_menu()
             else:
                 print('Enter a valid choice. Try again...')

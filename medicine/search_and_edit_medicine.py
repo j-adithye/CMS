@@ -57,6 +57,7 @@ def disable_medicine(k,v):
             if choice == 'y':
                 v['is_active'] = False
                 data[k] = v
+                print('Medicine Disabled')
                 return
             elif choice == 'n':
                 print('Medicine not disabled. Returning to previous menu...')
